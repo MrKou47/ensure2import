@@ -28,12 +28,4 @@ module.exports = function (files, opts) {
       reject(error);
     }
   })
-}
-
-
-const result = babel.transformFileSync(require('path').join(__dirname, '../server.js'), {
-  babelrc: false,
-  plugins: [
-    [addDefaultPlugin, { total: false }]
-  ]
-});
+};

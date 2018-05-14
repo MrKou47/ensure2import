@@ -6,8 +6,8 @@ const findit = require('findit');
 const statAsync = denodeify(fs.stat);
 const existsAsync = denodeify(fs.exists);
 const path = require('path');
-
 const transform = require('./transform');
+const { success, error: errorLog } = require('./log');
 
 const argv = require('yargs')
   .usage('Usage: $0 [file_path] [options] Example: rad ./test/**/*.js --verbose')
@@ -42,7 +42,7 @@ const verbose = argv.verbose;
 const total = argv.total;
 
 if (files.length === 0) {
-  console.log('need to provide file path, run with -h to see the example');
+  errorLog('need to provide file path, run with -h to see the example');
   process.exit(1);
 }
 
@@ -80,8 +80,8 @@ Promise.resolve().then(function () {
   const flatFiles = res.reduce((a, b) => a.concat(b));
   return transform(flatFiles, { verbose, total });
 }).then(() => {
-  console.log('finish transform');
+  success('finish transform');
 }, (error) => {
-  console.log(error)
+  errorLog(error);
   process.exit(1);
 })
