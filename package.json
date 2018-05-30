@@ -1,5 +1,5 @@
 {
-  "name": "@mtfe/rad",
+  "name": "ensure2import",
   "version": "1.0.2",
   "description": "add default identifier on require() expression",
   "main": "index.js",
@@ -13,7 +13,9 @@
   "license": "ISC",
   "dependencies": {
     "babel-core": "^6.26.3",
-    "babylon": "^6.18.0",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-template": "^6.26.0",
+    "babel-types": "^6.26.0",
     "chalk": "^2.4.1",
     "denodeify": "^1.2.1",
     "findit": "^2.0.0",

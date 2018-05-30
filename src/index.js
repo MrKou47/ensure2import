@@ -1,45 +1,25 @@
 #!/usr/bin/env node
-
 const fs = require('fs');
 const denodeify = require('denodeify');
 const findit = require('findit');
 const statAsync = denodeify(fs.stat);
 const existsAsync = denodeify(fs.exists);
 const path = require('path');
-const transform = require('./transform');
+const { transform } = require('./transform');
 const { success, error: errorLog } = require('./log');
 
 const argv = require('yargs')
-  .usage('Usage: $0 [file_path] [options] Example: rad ./test/**/*.js --verbose')
-  .option('verbose', {
-    boolean: true,
-    default: false,
-    description: 'show verbose',
-  })
-  .option('total', {
-    alias: 't',
-    boolean: true,
-    default: false,
-    description: 'transform all require expression',
-  })
-  .option('splitting', {
-    alias: 's',
-    boolean: true,
-    default: false,
-    description: 'transform require.ensure',
-  })
+  .usage('Usage: $0 [file_path] [options] Example: rad ./src/routes.js')
   .option('h', {
     alias: 'help',
     description: 'show hep',
   })
-  .epilog('for more information, contact mis:koubo')
+  .epilog('for more information, feel free to open an issue on https://github.com/MrKou47/ensure2import/issue')
   .showHelpOnFail(false, 'whoops, something went wrong! run with --help')
   .alias('version', 'v')
   .argv
 
 const files = argv._;
-const verbose = argv.verbose;
-const total = argv.total;
 
 if (files.length === 0) {
   errorLog('need to provide file path, run with -h to see the example');
@@ -78,9 +58,9 @@ Promise.resolve().then(function () {
   }));
 }).then((res) => {
   const flatFiles = res.reduce((a, b) => a.concat(b));
-  return transform(flatFiles, { verbose, total });
+  return transform(flatFiles);
 }).then(() => {
-  success('finish transform');
+  success('done.');
 }, (error) => {
   errorLog(error);
   process.exit(1);
