@@ -1,15 +1,17 @@
 {
   "name": "ensure2import",
-  "version": "1.0.2",
-  "description": "add default identifier on require() expression",
+  "version": "1.0.0",
+  "description": "transform require.ensure to import()",
   "main": "index.js",
   "bin": "src/index.js",
   "keywords": [
     "require",
+    "ensure",
+    "webpack",
     "babel",
     "plugin"
   ],
-  "author": "koubo",
+  "author": "mrkou47",
   "license": "ISC",
   "dependencies": {
     "babel-core": "^6.26.3",
