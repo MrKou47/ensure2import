@@ -1,6 +1,6 @@
 const template = require('babel-template');
 const t = require('babel-types');
-const { warn, success } = require('./log');
+const { warn } = require('./log');
 module.exports = function () {
   function findParentNode(path) {
     return (
@@ -29,7 +29,7 @@ module.exports = function () {
 
     if (webpackChunkNameNode && webpackChunkNameNode.value) {
       requiredStr.trailingComments = [{
-        value: `webpackChunkName: ${webpackChunkNameNode.value}`
+        value: ` webpackChunkName: ${webpackChunkNameNode.value} `
       }];
     } else {
       warn(`${filename} ${end.line}:${end.column} webpackChunkName not found.`);

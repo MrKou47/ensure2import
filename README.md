@@ -20,3 +20,25 @@ require.ensure([], function() {
 // transformation code
 import('./container/App/index.js' /* webpackChunkName: chunk-name */).then(mod => mod.default);
 ```
+
+With `react-router`:
+
+```js
+const routes = [{
+  path: 'user/info',
+  getComponent: function (nextState, callback) {
+    require.ensure([], () => {
+      callback(null, require('../container/user/info').default);
+    }, 'user-info');
+  }
+}];
+
+// will be
+const routes = [{
+  path: 'user/info',
+  getComponent: function (nextState, callback) {
+    import('../container/user/info' /* webpackChunkName: user-info */)
+      .then(mad => callback(null, mad.default));
+  }
+}];
+```
