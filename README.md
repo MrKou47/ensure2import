@@ -8,7 +8,7 @@ transform `require.ensure` to `import()`
 
 ## Usage
 
-> ensure2import src/routes.js
+> ensure2import ./src/**/routes/*.js
 
 And then *ensure2import* will transform your code:
 
