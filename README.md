@@ -8,6 +8,8 @@ transform `require.ensure` to `import()`
 
 ## Usage
 
+Support `glob` match.
+
 > ensure2import ./src/**/routes/*.js
 
 And then *ensure2import* will transform your code:
