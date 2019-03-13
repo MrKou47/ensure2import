@@ -35,7 +35,7 @@ const routes = [{
   }
 }];
 
-// will be
+// will be transformed to
 const routes = [{
   path: 'user/info',
   getComponent: function (nextState, callback) {
